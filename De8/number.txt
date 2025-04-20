@@ -1,0 +1,2 @@
+min: 5, max: 9, value: 7
+min: 2, max: 9, value: 5

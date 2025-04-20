@@ -38,7 +38,7 @@ public class QLSV {
         BufferedWriter bw = null;
 
         try {
-            bw = new BufferedWriter(new FileWriter("sinhvien.dat"));
+            bw = new BufferedWriter(new FileWriter("E:\\IS\\Java\\OOP\\sinhvien.dat"));
             for (Student st : list) {
                 bw.write(st.getName() + "|" + st.getDob() + "|" + st.getAdd() + "|" + st.getGender() + "|" + st.getId() + "|" + st.getEmail() + "|" + st.getGpa());
                 bw.newLine();
