@@ -39,6 +39,7 @@ public class QLSV {
 
         try {
             bw = new BufferedWriter(new FileWriter("E:\\IS\\Java\\OOP\\sinhvien.dat"));
+            // Thay E:\\IS\\Java\\OOP\\sinhvien.dat bang dia chi can luu
             for (Student st : list) {
                 bw.write(st.getName() + "|" + st.getDob() + "|" + st.getAdd() + "|" + st.getGender() + "|" + st.getId() + "|" + st.getEmail() + "|" + st.getGpa());
                 bw.newLine();
@@ -60,6 +61,7 @@ public class QLSV {
     public void readFiles() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("sinhvien.dat"));
+            //Ten file can doc: sinhvien.dat
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] part = line.split("\\|");

@@ -5,9 +5,9 @@
 package d10;
 
 import java.io.*;
-import java.nio.*;
 import java.nio.file.Files;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -18,6 +18,38 @@ public class QLCB {
     Scanner sc = new Scanner(System.in);
     ArrayList<Giangvien> list = new ArrayList<>();
     ArrayList<Giangvien> readlist = new ArrayList<>();
+
+    public static void main(String[] args) {
+        QLCB ql = new QLCB();
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("QLCB");
+            System.out.println("1. Them can bo");
+            System.out.println("2. Backup");
+            System.out.println("3. Doc file");
+            System.out.println("0. Thoat chuong trinh");
+            System.out.print("Nhap lua chon: ");
+            int choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    ql.add();
+                    break;
+                case 2:
+                    ql.backup();
+                    break;
+                case 3:
+                    ql.readFiles();
+                    break;
+                case 0:
+                    System.out.println("Thoat chuong trinh");
+                    return;
+                default:
+                    System.out.println("Lua chon khong hop le, vui long chon lai");
+                    break;
+            }
+        }
+    }
 
     public void add() {
         System.out.print("Ho ten: ");
@@ -75,7 +107,7 @@ public class QLCB {
             System.err.println("Da xay ra loi khi ghi file: " + e.getMessage());
             e.printStackTrace();
         } finally {
-            if(bw != null) {
+            if (bw != null) {
                 try {
                     bw.close();
                 } catch (IOException e) {
@@ -107,66 +139,34 @@ public class QLCB {
 
     public void readFiles() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("test.dat"));
+            BufferedReader br = new BufferedReader(new FileReader("canbo.dat"));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] text = line.split("\\|");
                 if (text.length == 5) {
                     String hoTen = text[0];
                     String maGiangVien = text[1];
-                    String diaChi  = text[2];
-                    String gt  = text[3];
-                    String khoa  = text[4];
-                    
+                    String diaChi = text[2];
+                    String gt = text[3];
+                    String khoa = text[4];
+
                     Giangvien gv = new Giangvien(hoTen, maGiangVien, diaChi, gt, khoa);
                     readlist.add(gv);
                     System.out.println("Doc file thanh cong");
-                    display();
                 }
             }
+            display();
         } catch (IOException e) {
             e.getStackTrace();
         }
     }
-    
+
     public void display() {
-        if(readlist.isEmpty()) {
+        if (readlist.isEmpty()) {
             System.out.println("Empty");
         } else {
-            for(Giangvien rl : readlist) {
+            for (Giangvien rl : readlist) {
                 System.out.println(rl);
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        QLCB ql = new QLCB();
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-            System.out.println("QLCB");
-            System.out.println("1. Them can bo");
-            System.out.println("2. Backup");
-            System.out.println("3. Doc file");
-            System.out.println("0. Thoat chuong trinh");
-            System.out.print("Nhap lua chon: ");
-            int choice = sc.nextInt();
-            sc.nextLine();
-            switch (choice) {
-                case 1:
-                    ql.add();
-                    break;
-                case 2:
-                    ql.backup();
-                    break;
-                case 3:
-                    ql.readFiles();
-                    break;
-                case 0:
-                    System.out.println("Thoat chuong trinh");
-                    return;
-                default:
-                    System.out.println("Lua chon khong hop le, vui long chon lai");
-                    break;
             }
         }
     }
